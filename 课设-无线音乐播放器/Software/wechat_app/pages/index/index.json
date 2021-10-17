@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "iconfont": "../../components/iconfont/iconfont",
+    "selectbox": "../../components/selectbox/selectbox"
+  },
+  "navigationBarTitleText": "WiFi MP3 Player",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,90 @@
+<!--index.wxml-->
+<!--弹窗模块-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title" wx:if="{{changeType == 'host'}}">修改MQTT地址</view>
+    <view class="modal-title" wx:elif="{{changeType == 'topic'}}">修改MQTT主题</view>
+    <view class="modal-content">
+      <view class="modal-input" wx:if="{{changeType == 'host'}}">
+        <view class="modal-state">说明:your-mqtt-address:{ws-port}/mqtt</view>
+        <input placeholder-class="input-holder" type="text" maxlength="30" bindinput="inputChange" class="input" bindconfirm="onConfirm" confirm-type="done" value="{{inputMess}}"
+        placeholder="{{MQTTHost}}" focus="true"></input>
+      </view>
+      <view class="modal-input" wx:elif="{{changeType == 'topic'}}">
+        <view class="modal-state" style="font-size:30rpx">说明:不能以'/'结尾</view>
+        <input placeholder-class="input-holder" type="text" maxlength="30" placeholder="{{topic}}" bindinput="inputChange" bindconfirm="onConfirm" confirm-type="done" class="input" value="{{inputMess}}" focus="true"></input>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>
+</view>
+<!-- 内容 -->
+<view class="container">
+  <view class="device">
+    <iconfont name="shebei" class="img-pro"></iconfont>
+    <view wx:if="{{mqttStatusCode == 1}}" class="mqtt-status">
+      <iconfont name="icon-status-green"></iconfont>
+      <view class="mqtt-status-text">MQTT: 已连接</view>
+      <text class="change-button-1" bindtap="showModal" id="host"style="font-size:30rpx" id="host">修改</text>
+    </view>
+    <view wx:elif="{{mqttStatusCode == -1}}" class="mqtt-status">
+      <iconfont name="icon-status-red"></iconfont>
+      <view class="mqtt-status-text">MQTT: 连接失败</view>
+      <view class="mqtt-reconnect">
+        <text class="change-button-1" bindtap="mqttReconnect" style="font-size:30rpx" id="host" id="host">重连</text>
+        <text class="change-button-1" bindtap="showModal" id="host"style="font-size:30rpx" id="host">修改</text>
+      </view>
+    </view>
+    <view wx:else class="mqtt-status">
+      <iconfont name="icon-status-grey"></iconfont>
+      <view class="mqtt-status-text">MQTT: 连接中</view>
+      <text class="change-button-1" bindtap="showModal" id="host"style="font-size:30rpx" id="host">修改</text>
+    </view>
+    <view class="mqtt-topic">
+      <view wx:if="{{topicStatusCode == 1}}">
+        <iconfont name="icon-status-green"></iconfont>
+      </view>
+      <view wx:elif="{{topicStatusCode == -1}}">
+        <iconfont name="icon-status-red"></iconfont>
+      </view>
+      <view wx:else>
+        <iconfont name="icon-status-grey"></iconfont>
+      </view>
+      <view class="mqtt-status-text">主题: {{topic}}</view>
+      <text class="change-button" bindtap="showModal" id="host"style="font-size:30rpx" id="topic">修改</text>
+    </view>
+    <view class="mqtt-device">
+        <iconfont name="{{deviceIsConnected?'icon-status-green':'icon-status-red'}}"></iconfont>
+      <view class="mqtt-status-ip" wx:if="{{deviceIsConnected}}">设备: {{deviceIP}}</view>
+      <view class="mqtt-status-ip" wx:else>设备: 未连接</view>
+    </view>
+  </view>
+  <view class="player">
+    <iconfont name="player" class="img-pro" wx:if="{{deviceIsFree}}"></iconfont>
+    <image src="../../icons/playing.gif" wx:else></image>
+    <view class="play-song">
+      <iconfont name="M_round" class="play-left"></iconfont>
+      <selectbox prop-array="{{selectArray}}" bind:url="setUrl" class="play-center"></selectbox>
+      <iconfont name="bofang" cmd="play" cmdType="play" wx:if="{{!playingMP3}}" bind:cmd="playOrStop" class="play-right"></iconfont>
+      <iconfont name="tingzhi" cmd="stop" wx:else bind:cmd="playOrStop" class="play-right"></iconfont>
+    </view>
+    <view class="play-song">
+      <iconfont name="R_round" class="play-left" cmd="rtttlSample" bind:cmd="downloadSampleFile"></iconfont>
+      <input class="input-text" type="text" confirm-type="done" maxlength="120" bindinput="changeRtttlContent" placeholder-class="text-grey text-lg" placeholder="<-下载示例    发送示例->" class="play-center"/>
+      <iconfont name="bofang" cmd="play" cmdType="tone" wx:if="{{!playingRtttl}}" bind:cmd="playOrStop"  class="play-right"></iconfont>
+      <iconfont name="tingzhi" cmd="stop" wx:else bind:cmd="playOrStop" class="play-right"></iconfont>
+    </view>
+    <view class="play-song">
+      <iconfont name="S_round" class="play-left" cmd="saySample" bind:cmd="downloadSampleFile"></iconfont>
+      <input class="input-text" type="text" confirm-type="done" maxlength="120" bindinput="changeSayContent" placeholder="<-下载示例    发送示例->" placeholder-class="text-grey text-lg" class="play-center"/>
+      <iconfont name="bofang" cmd="play" cmdType="say" wx:if="{{!playingSay}}" bind:cmd="playOrStop" class="play-right"></iconfont>
+      <iconfont name="tingzhi" cmd="stop" wx:else bind:cmd="playOrStop" class="play-right"></iconfont>
+    </view>
+    <view class="play-option">
+      <iconfont class="yinliang" name="yinliang"></iconfont>
+      <slider value="80" activeColor="#00e5ff" block-size="18" block-color="#9b9b9b" bindchange="setVolume" show-value></slider>
+    </view>
+  </view>
+</view>

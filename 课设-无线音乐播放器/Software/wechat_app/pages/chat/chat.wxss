@@ -1,0 +1,13 @@
+/* pages/contact/contact.wxss */
+
+page{
+  padding-bottom: 100rpx;
+}
+
+.date-self {
+  font-size: 24rpx;
+  color: var(--grey);
+  width: 100%;
+  margin: 10rpx auto;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+<!--components/selecbox.wxml-->
+<view class='ms-content-box'>
+    <view class='ms-content' bindtap='selectToggle'>
+        <view class='ms-text'>{{selectText}}</view>
+         <view class="{{selectShow ? 'icon-up' : 'icon-down'}}"></view>
+    </view>
+    <view class='ms-options' wx:if="{{selectShow}}">
+        <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='index' class='ms-option' bindtap='setText'><text class="id">{{item.id}}</text><text class="name">{{item.name}}</text><text class="songer">{{item.songer==""?"未知歌手":item.songer}}</text></view>
+    </view>
+</view>

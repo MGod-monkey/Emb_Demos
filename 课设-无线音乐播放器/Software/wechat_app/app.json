@@ -1,0 +1,49 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/chat/chat",
+    "pages/setcolor/setcolor",
+    "pages/mess/mess"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#00e5ff",
+    "navigationBarTitleText": "WiFi MP3 Player",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "backgroundColor": "#ecf0f1",
+    "selectedColor": "#00e5ff",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "播放",
+      "iconPath": "./icons/tabbar_music_no.png",
+      "selectedIconPath": "./icons/tabbar_music_on.png"
+    },
+    {
+      "pagePath": "pages/setcolor/setcolor",
+      "text": "调色",
+      "iconPath": "./icons/colorpicker_no.png",
+      "selectedIconPath": "./icons/colorpicker_on.png"
+    },
+    {
+      "pagePath": "pages/chat/chat",
+      "text": "聊天",
+      "iconPath": "./icons/liaotian_no.png",
+      "selectedIconPath": "./icons/liaotian_on.png"
+    },
+    {
+      "pagePath": "pages/mess/mess",
+      "text": "更多",
+      "iconPath": "./icons/tabbar_mess_no.png",
+      "selectedIconPath": "./icons/tabbar_mess_on.png"
+    }
+  ]
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "style": "v2",
+  "requiredBackgroundModes": ["audio", "location"],
+  "sitemapLocation": "sitemap.json"
+}

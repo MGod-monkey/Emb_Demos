@@ -1,0 +1,54 @@
+<!--pages/contact/contact.wxml-->
+<scroll-view enable-flex scroll-y scroll-into-view="{{toView}}" scroll-anchoring="true" enable-back-to-top="true" scroll-with-animation="true"
+style="height: {{scrollHeight}}" class="cu-chat" > 
+  <view  class="cu-info">
+    你好！我叫钦钦，是新一代聊天人工智能，我的上一代人工智能叫上一代人工智能，我可以查天气，陪你聊天，还可以可以，没了``我的初衷就是逗你开心！！！更多信息请联系我的主人
+    <text class="text-blue">@MGodmonkey</text>
+  </view>
+  <view class="date-self">{{time}}</view>
+
+  <block wx:key="index" wx:for='{{msgList}}' wx:for-index="index">
+
+    <!-- 单个消息1 机器人发出（左） -->
+    <view class="cu-item" wx:if='{{item.speaker=="server"}}' id='msg-{{index}}'>
+      <view class="cu-avatar radius"><iconfont name="jiqiren" size='36' ></iconfont></view>
+      <view class="main">
+        <view class="content bg-green shadow">
+          <text user-select>{{item.content}}</text>
+        </view>
+        <view class="action text-grey" wx:if="{{!isColseError&&item.error!=''}}">
+          <text class="cuIcon-warnfill text-red text-xxl text-cut"></text> <text class="text-sm margin-left-sm">{{item.error}}</text>
+        </view>
+      </view>
+      <view class="date">{{item.timeFormat}}</view>
+    </view>
+
+    <!-- 单个消息2 用户发出（右） -->
+    <view class="cu-item self" wx:else id='msg-{{index}}'>
+      <view class="main">
+        <view class="content shadow">
+          <text user-select>{{item.content}}</text>
+        </view>
+      </view>
+      <view class="cu-avatar radius" wx:if="{{canIUseOpenData}}">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view wx:else>
+        <image class="cu-avatar radius" src='{{cusHeadIcon}}'></image>
+      </view>
+      <view class="date">{{item.timeFormat}}</view>
+    </view>
+  </block>
+</scroll-view>
+<!-- </view> -->
+
+<view class="cu-bar foot input {{inputBottom!=0?'cur':''}}" style="height: 42rpx;bottom:{{inputBottom}}rpx">
+  <view class="action">
+    <text class="cuIcon-sound text-grey"></text>
+  </view>
+  <input class="solid-bottom" bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindinput='changeMsg' bindblur='blur' maxlength="300" cursor-spacing="10"></input>
+  <view class="action">
+    <text class="cuIcon-emojifill text-grey"></text>
+  </view>
+  <iconfont name="send-s" bindtap="sendClick" color="#8799a3" size='30'></iconfont>
+</view>

@@ -1,0 +1,252 @@
+page {
+  height: 100%;
+  background-color: #ecf0f1;
+}
+
+iconfont {
+  display: inline;
+  align-self: center;
+}
+
+.device {
+  display: flex;
+  width: 80%;
+  height: 25%;
+  position:absolute;
+  top: 4%;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  border-radius: 5%;
+  background-color: white;
+  border: 15rpx solid #333333;
+}
+.player {
+  display: flex;
+  width: 80%;
+  height: 55%;
+  position:absolute;
+  top: 38%;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5%;
+  background-color: white;
+  border: 15rpx solid #333333;
+}
+
+/* 上半部分 */
+.img-pro {
+  background-color:rgba(255, 255, 255);
+  transform: translateY(-60%);
+  padding: 0 10rpx;
+  border-radius: 50%;
+}
+image {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-self: center;
+  background-color:rgba(255, 255, 255);
+  transform: translateY(-60%);
+  padding: 0 10rpx;
+  border-radius: 50%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mqtt-status, .mqtt-topic, .mqtt-device {
+  display: flex;
+  width: 100%;
+  height: 20%;
+  align-items: center;
+  margin: 5rpx 15rpx;
+  /* padding: 5rpx 15rpx; */
+  transform: translateY(-20%);
+}
+
+.mqtt-status-text {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mqtt-status-ip {
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+}
+/* 修改按钮 */
+.change-button {
+  color:#1e90ff;
+  height: 100%;
+  background-color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20rpx;
+  /* padding-left: 85rpx; */
+}
+
+.mqtt-reconnect {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.change-button-1 {
+  color:#1e90ff;
+  background-color:white;
+  margin-left: 20rpx;
+}
+
+/* 下半部分 */
+.play-song {
+  width: 100%;
+  height: 20%;
+  margin: 20rpx, 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* .play-right, .play-center, .play-left {
+  height: 100%;
+  /* align-items: center; */
+  /* float: left; */
+/* }
+.play-left {
+  width: 15%;
+}
+.play-center {
+  width: 70%;
+} */
+
+.play-right {
+  width: 15%;
+}
+
+.play-option {
+  width: 65%;
+  height: 90rpx;
+  position: fixed;
+  bottom: 10%;
+  /* background-color: #ecf0f1; */
+  border-radius: 68rpx;
+  background: #e0e0e0;
+  box-shadow:  40rpx 40rpx 62rpx #aaaaaa,
+              -40rpx -40rpx 62rpx #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input.play-center {
+  height: 70rpx;
+  width: 400rpx;
+  margin: 10rpx 5rpx;
+  overflow: hidden;
+  border-bottom: 5rpx solid #333333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 10rpx 0 15rpx;
+  font-size: 32rpx;
+  border-radius: 8%;
+}
+
+slider {
+  margin:0 20rpx 0 50rpx;
+  width: 66%;
+}
+
+/* 弹窗 */
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+.modal-dialog {
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  background: #fff;
+  margin: -180rpx 105rpx;
+  border-radius: 36rpx;
+}
+.modal-title {
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+.modal-content {
+  padding: 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-input {
+  background: #fff;
+  border-bottom: 2rpx solid #ddd;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+.modal-state {
+  width: 100%;
+  text-align: center;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+.input {
+  width: 100%;
+  height: 82rpx;
+  text-align: center;
+  font-size: 25rpx;
+  line-height: 28rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+input-holder {
+  color: #666;
+  font-size: 28rpx;
+}
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx;
+}
+.btn-cancel {
+  width: 50%;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+.btn-confirm {
+  width: 50%;
+  color: #ec5300;
+  text-align: center;
+}

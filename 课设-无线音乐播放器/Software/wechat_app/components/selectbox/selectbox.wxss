@@ -1,0 +1,121 @@
+/* components/selecbox.wxss */
+.ms-content-box {
+  width: 400rpx;
+  height: 70rpx;
+  border: 5rpx solid #333333;
+  border-radius: 10%;
+  margin: 10rpx 5rpx;
+}
+
+.ms-content {
+  border: 5rpx solid #333333;
+  background: white;
+  font-size: 16rpx;
+  position: relative;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 10%;
+}
+
+.ms-text {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 10rpx 0 15rpx;
+  font-size: 32rpx;
+}
+
+.ms-options {
+  background: white;
+  width: inherit;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  border: 5rpx solid #333333;
+  border-top: none;
+  box-sizing: border-box;
+  z-index: 3;
+  max-height: 260rpx;
+  overflow: auto;
+}
+
+.ms-option {
+  line-height: 30px;
+  margin: 0px;
+  padding: 0px;
+  border: 5rpx solid #333333;
+  /* padding: 0 6px; */
+  text-align: left;
+  display: flex;
+  align-items: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.id, .name, .songer {
+  height: 30px;
+  float: left;
+  text-align: center;
+}
+.id {
+  width: 10%;
+  border-right: black solid 5rpx;
+}
+.name {
+  width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-right: black solid 5rpx;
+}
+.songer {
+  width: 35%;
+  padding: 0 5rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-item:first-child {
+  border-top: none;
+}
+
+.icon-right, .icon-down, .icon-up {
+  display: inline-block;
+  padding-right: 5rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 15rpx;
+}
+
+.icon-right::after, .icon-down::after, .icon-up::after {
+  content: "";
+  display: inline-block;
+  position: relative;
+  bottom: 2rpx;
+  margin-left: 0rpx;
+  height: 30rpx;
+  width: 30rpx;
+  border: solid #333333;
+  border-width: 5rpx 5rpx 0 0;
+}
+
+.icon-right::after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.icon-down::after {
+  bottom: 14rpx;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.icon-up::after {
+  bottom: 0rpx;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

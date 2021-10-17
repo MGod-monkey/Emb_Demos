@@ -1,0 +1,51 @@
+<!--pages/mess/mess.wxml-->
+<view class="card">
+  <view class="card-front">
+    <block wx:if="{{canIUseOpenData}}">
+      <view class="card-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="card-nick">
+        <open-data type="userNickName"></open-data>
+      </view>
+    </block>
+    <scroll-view scroll-y="true" enable-flex="true" class="card-front-pj">
+      <view class="project"><text class="title">项目名称:</text><text class="value">{{name}}</text></view>
+      <view class="project"><text class="title">MQTT Host:</text><text class="value" selectable="true">{{MQTTServer}}</text></view>
+      <view class="project"><text class="title">MQTT Port:</text><text class="value" selectable="true">{{MQTTPort}}</text></view>
+      <view class="project"><text class="title">设备IP:</text><text class="value" selectable="true">{{deviceIP}}</text></view>
+      <view class="project"><text class="title">Github:</text><text class="value" selectable="true">{{github}}</text></view>
+      <view class="project"><text class="title">作者:</text><text class="value">{{author}}</text></view>
+      <view class="project"><text class="title">邮箱:</text><text class="value" selectable="true">{{email}}</text></view>
+    </scroll-view>
+      <view style="align-self: center;font-size: 30rpx">Version: {{version}}</view>
+      <view style="align-self: center;font-size: 30rpx;padding-bottom:15rpx">--MQTT指令请看背面--</view>
+  </view>
+  <view class="card-back">
+    <block wx:if="{{canIUseOpenData}}">
+      <view class="card-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="card-nick">
+        <open-data type="userNickName"></open-data>
+      </view>
+    </block>
+    <scroll-view scroll-y="true" enable-flex="true" class="mqtt-cmd">
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/play\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 播放MP3</view></view>
+      <view class="mqtt-cmd-accept"><text>Accept:(String)指向MP3文件的url(不能是https)\n如: "http://xxx/yy.mp3"</text></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/tone\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx" >-- 播放RTTTL</view></view>
+      <view class="mqtt-cmd-accept"><text>Accept:(String)RTTTL格式文字\n如: "16b4,8e,2c#.,p,8e,8g,8p"</text></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/say\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 播放合成语音</view></view>
+      <view class="mqtt-cmd-accept"><text>Accept:(String)只支持英文(暂不支持中文,限制128字符)\n如: "hello world,i am lihua,are you ok?"</text></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/rgb\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 设置彩灯颜色</view></view>
+      <view class="mqtt-cmd-accept"><text>Accept:(String)"R,G,B"(0~255)(RGB颜色亮度值)\n如:    "80,227,194"</text></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/volume\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 设置音量</view></view>
+      <view class="mqtt-cmd-accept"><text>Accept:(Double)音量大小(0~1.0)(大于1.0自动设置为0.8)\n如: 0.8</text></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/stop\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 停止播放</view></view>
+      <view class="mqtt-cmd-accept"><text>Accept:(Any)任意\n如: "please stop"</text></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/deviceMsg\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 获取设备信息</view></view>
+      <view class="mqtt-cmd-container"><view style="font-size:40rpx;font-style:oblique">Topic: <text style="font-size:30rpx;font-style:oblique" selectable="true">{{topic}}/status\n</text></view><view style="text-align: right;font-size: 35rpx;margin-right:10rpx">-- 获取设备状态</view></view>
+    </scroll-view>
+  </view>
+</view>
+

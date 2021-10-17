@@ -1,0 +1,94 @@
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+<view class="grid col-1 margin-bottom-xl margin-top-xl text-center">
+  <view class="color-picker">
+      <view class="color-picker-bg"
+        style="background:{{rgb}};box-shadow:0rpx 0rpx 30rpx 20rpx {{rgb}};border: 20rpx solid {{tonalrgb}};"
+        bindtap="toPick"></view>
+    </view>
+  <color-picker bindchangeColor="pickColor" initColor="{{rgb}}" show="{{pick}}" />
+</view>
+<view style="height:2vh"></view>
+<form>
+  <view class="cu-form-group margin-top-xl radius shadow-warp margin-left-xl margin-right-xl">
+    <view class="action text-black text-xl">
+      <text class="cuIcon-titles text-orange"></text>正色
+    </view>
+    <!-- <view class="rgb-text-title text-black text-xl"></view> -->
+    <view class="cu-capsule round">
+      <view class="cu-tag bg-red">R</view>
+      <view class="cu-tag line-red">{{rgbList[0]}}</view>
+    </view>
+    <view class="cu-capsule round">
+      <view class="cu-tag bg-green">G</view>
+      <view class="cu-tag line-green">{{rgbList[1]}}</view>
+    </view>
+    <view class="cu-capsule round">
+      <view class="cu-tag bg-blue">B</view>
+      <view class="cu-tag line-blue">{{rgbList[2]}}</view>
+    </view>
+  </view>
+  <view class="cu-form-group margin-top radius shadow-warp margin-left-xl margin-right-xl">
+    <view class="action text-gray text-xl">
+      <text class="cuIcon-titles text-cyan"></text>反色
+    </view>
+    <view class="cu-capsule round">
+      <view class="cu-tag bg-red">R</view>
+      <view class="cu-tag line-red">{{tonalrgbList[0]}}</view>
+    </view>
+    <view class="cu-capsule round">
+      <view class="cu-tag bg-green">G</view>
+      <view class="cu-tag line-green">{{tonalrgbList[1]}}</view>
+    </view>
+    <view class="cu-capsule round">
+      <view class="cu-tag bg-blue">B</view>
+      <view class="cu-tag line-blue">{{tonalrgbList[2]}}</view>
+    </view>
+  </view>
+  <view class='padding margin text-center'>
+    <view class='cu-btn bg-pink lg shadow-warp block radius margin-xl' bindtap="showModal" data-target="viewModal">
+      点我打开设置</view>
+	</view>
+</form>
+</scroll-view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+			<text class="cuIcon-pullright"></text>
+</view>
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view style="height:3vh"></view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+    <view class="cu-form-group margin-top radius shadow-warp margin-left-xl margin-right-xl">
+      <view class="action text-black text-xl">
+      <text class="cuIcon-titles text-pink"></text>正色 / 反色</view>
+      <switch class="pink sm switch-sex" id="switch1" bindchange="onChange" checked="{{switch1}}"></switch>
+    </view>
+    <view class="cu-form-group margin-top radius shadow-warp margin-left-xl margin-right-xl">
+      <view class="action text-black text-xl">
+      <text class="cuIcon-titles text-yellow"></text>彩虹色 / 固定色</view>
+      <switch class="yellow sm" id="switch2" bindchange="onChange" checked="{{switch2}}"></switch>
+    </view>
+    <view class="cu-form-group margin-top radius shadow-warp margin-left-xl margin-right-xl">
+      <view class="action text-black text-xl {{switch2?'text-grey':'text-black'}}">
+      <text class="cuIcon-titles text-mauve"></text>动态 / 静态</view>
+      <switch class="{{switch2?'grey':'mauve'}} sm" id="switch3" bindchange="onChange" checked="{{switch3}}" disabled="{{switch2}}"></switch>
+    </view>
+    <view class="cu-form-group margin-top radius shadow-warp margin-left-xl margin-right-xl">
+      <view class="action text-xl {{switch3?'text-black':'text-gray'}}">
+      <text class="cuIcon-titles text-green"></text>呼吸 / 闪烁</view>
+      <switch class="{{switch3?'green':'grey'}} sm" id="switch4" bindchange="onChange" checked="{{switch4}}" disabled="{{!switch3}}"></switch>
+    </view>
+    <view class="cu-form-group-1 margin-top radius shadow-warp margin-left-xl margin-right-xl">
+        <view class="action text-black text-lg padding-top">
+        <text class="cuIcon-titles text-cyan"></text>速率</view>
+        <view class="margin-left margin-top margin-bottom-xs">
+        <slider value="{{speed}}" min="10" max="100" step="5" style="margin:10rpx 16rpx" activeColor="#1cbbb4" block-size="16" block-color="#9b9b9b" bindchange="setSpeed" show-value></slider>
+        </view>
+    </view>
+    <view class="cu-form-group-1 margin-top radius shadow-warp margin-left-xl margin-right-xl">
+        <view class="action text-black text-lg padding-top">
+        <text class="cuIcon-titles text-blue"></text>亮度</view>
+        <view class="margin-left margin-top margin-bottom-xs">
+        <slider value="{{brightness}}" style="margin:10rpx 16rpx" max="255" activeColor="#0081ff" block-size="16" block-color="#9b9b9b" bindchange="setBrightness" show-value></slider>
+        </view>
+    </view>
+  </view>
+</scroll-view>

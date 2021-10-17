@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="card">
+  <view class="content">
+      <view class="content_front" style="font-size:{{font_size}}"><text>host: </text>{{host}}</view><input type="text" class="change_input" placeholder="更换MQTT服务器" confirm-type="done" id="host"  bindconfirm="changeOption" disabled/>
+      <view class="content_front"><text>topic: </text>{{topic}}</view><input type="text" id="topic" class="change_input" value="{{value}}"
+      placeholder="更换订阅主题" confirm-type="done" bindconfirm="changeOption"/>
+  </view>
+</view>
+<view class="message">{{cmd_mess}}</view>
